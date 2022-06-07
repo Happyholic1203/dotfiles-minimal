@@ -1,0 +1,19 @@
+# No arguments: `git status`
+# With arguments: acts like git
+# https://github.com/colbycheeze/dotfiles/blob/master/zsh/functions/g
+
+g() {
+    if [ $# -gt 0 ]; then
+        cmd="git"
+        for arg in "$@"; do
+            cmd+=" \"${arg//\"/\\\"}\""
+        done
+        eval $cmd
+    else
+        git status
+    fi
+}
+
+# Complete g like git
+_completion_loader git 2>/dev/null
+eval $(complete -p git | sed 's/ git$/ g/g')

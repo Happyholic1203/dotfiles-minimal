@@ -1,0 +1,5 @@
+[ -d ~/.bash/functions ] && {
+    for f in ~/.bash/functions/*; do
+        source $f
+    done
+} || true
